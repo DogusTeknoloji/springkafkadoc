@@ -8,7 +8,7 @@ maven { url = uri("https://jitpack.io") }
 ```
 
 ```
-implementation("com.github.DogusTeknoloji:springkafkadoc:1.0.2")
+implementation("com.github.DogusTeknoloji:springkafkadoc:1.0.3")
 ```
 
 - Add asyncapi configuration file
