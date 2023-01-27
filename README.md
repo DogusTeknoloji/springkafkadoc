@@ -4,7 +4,7 @@ This tool is created for auto generated kafka documentation with spring projects
 ## How to use
 - Implement this package.
 ```
-implementation("io.github.DogusTeknoloji:springkafkadoc:1.0.0")
+implementation("com.dteknoloji:springkafkadoc:1.0.1")
 ```
 
 - Add asyncapi configuration file

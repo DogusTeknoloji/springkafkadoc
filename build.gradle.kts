@@ -12,10 +12,12 @@ plugins {
     kotlin("plugin.spring") version "1.6.10"
 }
 
-group = "io.github.DogusTeknoloji"
-version = "1.0.0"
+group = "com.dteknoloji"
+version = "1.0.1"
 java.sourceCompatibility = JavaVersion.VERSION_17
 java.targetCompatibility = JavaVersion.VERSION_17
+val repoUsername: String by project
+val repoPassword: String by project
 
 val sourcesJar by tasks.registering(Jar::class) {
     archiveClassifier.set("sources")
@@ -24,13 +26,27 @@ val sourcesJar by tasks.registering(Jar::class) {
 
 repositories {
     mavenCentral()
+    maven { url = uri("https://jitpack.io") }
 }
 
 publishing {
     publications {
-        create<MavenPublication>(project.name) {
+        create<MavenPublication>("maven") {
+            groupId = "com.dteknoloji"
+            version = "1.0.1"
+            artifactId = "springkafkadoc"
             from(components["java"])
-            artifact(sourcesJar)
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/DogusTeknoloji/springkafkadoc")
+            credentials {
+                username = repoUsername
+                password = repoPassword
+            }
         }
     }
 }
