@@ -3,7 +3,6 @@ import org.jlleitschuh.gradle.ktlint.tasks.KtLintFormatTask
 
 plugins {
     java
-    jacoco
     `maven-publish`
     id("org.springframework.boot") version "2.7.2"
     id("io.spring.dependency-management") version "1.0.15.RELEASE"
@@ -16,11 +15,6 @@ group = "com.dteknoloji"
 version = "1.0.3"
 java.sourceCompatibility = JavaVersion.VERSION_17
 java.targetCompatibility = JavaVersion.VERSION_17
-
-val sourcesJar by tasks.registering(Jar::class) {
-    archiveClassifier.set("sources")
-    from(sourceSets.main.get().allSource)
-}
 
 repositories {
     mavenCentral()
@@ -46,17 +40,12 @@ dependencies {
     compileOnly("org.jetbrains.kotlin:kotlin-reflect")
     compileOnly("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     compileOnly("org.springframework.kafka:spring-kafka")
-
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks {
     jar {
         enabled = true
-    }
-
-    publish {
-        dependsOn(check)
+        archiveClassifier.set("")
     }
 
     bootJar {
@@ -72,9 +61,5 @@ tasks {
 
     withType<KtLintFormatTask> {
         description = "KtLint Format"
-    }
-
-    withType<Test> {
-        useJUnitPlatform()
     }
 }
