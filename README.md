@@ -2,9 +2,13 @@
 This tool is created for auto generated kafka documentation with spring projects. YAML/JSON document is built in Async API format.
 
 ## How to use
-- Implement this package.
+- Implement these to build.gradle.kts.
 ```
-implementation("com.dteknoloji:springkafkadoc:1.0.1")
+maven { url = uri("https://jitpack.io") }
+```
+
+```
+implementation("com.github.DogusTeknoloji:springkafkadoc:1.0.2")
 ```
 
 - Add asyncapi configuration file

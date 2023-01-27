@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "com.dteknoloji"
-version = "1.0.1"
+version = "1.0.2"
 java.sourceCompatibility = JavaVersion.VERSION_17
 java.targetCompatibility = JavaVersion.VERSION_17
 val repoUsername: String by project
@@ -33,7 +33,7 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = "com.dteknoloji"
-            version = "1.0.1"
+            version = "1.0.2"
             artifactId = "springkafkadoc"
             from(components["java"])
         }
