@@ -15,8 +15,6 @@ group = "com.dteknoloji"
 version = "1.0.4"
 java.sourceCompatibility = JavaVersion.VERSION_17
 java.targetCompatibility = JavaVersion.VERSION_17
-val repoUsername: String by project
-val repoPassword: String by project
 
 val sourcesJar by tasks.registering(Jar::class) {
     archiveClassifier.set("sources")
