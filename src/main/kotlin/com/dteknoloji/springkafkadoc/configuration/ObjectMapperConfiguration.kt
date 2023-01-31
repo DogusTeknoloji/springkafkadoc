@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import io.swagger.oas.inflector.processors.JsonNodeExampleSerializer
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -22,12 +23,12 @@ class ObjectMapperConfiguration {
         val module = SimpleModule()
         module.addSerializer(KafkaChannelBinding::class.java, KafkaChannelBindingSerializer())
         module.addSerializer(KafkaOperationBinding::class.java, KafkaOperationBindingSerializer())
-        this.registerModule(module)
+        this.registerModules(module, JavaTimeModule())
     }
 
     @Bean
     fun objectMapper() = ObjectMapper().apply {
-        this.registerModule(SimpleModule().addSerializer(JsonNodeExampleSerializer()))
+        this.registerModules(SimpleModule().addSerializer(JsonNodeExampleSerializer()), JavaTimeModule())
     }
 
     @Bean
@@ -36,6 +37,6 @@ class ObjectMapperConfiguration {
         val module = SimpleModule()
         module.addSerializer(KafkaChannelBinding::class.java, KafkaChannelBindingSerializer())
         module.addSerializer(KafkaOperationBinding::class.java, KafkaOperationBindingSerializer())
-        this.registerModule(module)
+        this.registerModules(module, JavaTimeModule())
     }
 }
