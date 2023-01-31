@@ -2,7 +2,9 @@ package com.dteknoloji.springkafkadoc.service
 
 import com.dteknoloji.springkafkadoc.types.message.header.AsyncHeaders
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.module.SimpleModule
 import io.swagger.oas.inflector.examples.ExampleBuilder
+import io.swagger.oas.inflector.processors.JsonNodeExampleSerializer
 import io.swagger.v3.core.converter.ModelConverters
 import io.swagger.v3.oas.models.media.MapSchema
 import io.swagger.v3.oas.models.media.ObjectSchema
@@ -17,6 +19,10 @@ class SchemasService(
 ) {
 
     private val definitions = mutableMapOf<String, Schema<*>>()
+
+    init {
+        objectMapper.registerModule(SimpleModule().addSerializer(JsonNodeExampleSerializer()))
+    }
 
     fun getDefinitions(): Map<String, Schema<*>> {
         definitions.forEach { (_, schema) -> buildExampleAsString(schema) }
