@@ -17,7 +17,7 @@ import java.lang.reflect.Method
 class MethodLevelKafkaProducerScanner(
     docket: AsyncApiDocket,
     schemasService: SchemasService
-) : AbstractProducerScanner<AsyncApiProducer>(docket, schemasService), ChannelsScanner, EmbeddedValueResolverAware {
+) : AbstractProducerScanner<AsyncApiDocProducer>(docket, schemasService), ChannelsScanner, EmbeddedValueResolverAware {
 
     private var resolver: StringValueResolver? = null
 
@@ -25,19 +25,19 @@ class MethodLevelKafkaProducerScanner(
         this.resolver = resolver
     }
 
-    override fun getProducerAnnotationClass(): Class<AsyncApiProducer> {
-        return AsyncApiProducer::class.java
+    override fun getProducerAnnotationClass(): Class<AsyncApiDocProducer> {
+        return AsyncApiDocProducer::class.java
     }
 
-    override fun getChannelName(annotation: AsyncApiProducer): String {
+    override fun getChannelName(annotation: AsyncApiDocProducer): String {
         return annotation.topicPattern + "_subscribe"
     }
 
-    override fun buildChannelBinding(annotation: AsyncApiProducer): Map<String, ChannelBinding?> {
+    override fun buildChannelBinding(annotation: AsyncApiDocProducer): Map<String, ChannelBinding?> {
         return ImmutableMap.of("kafka", KafkaChannelBinding())
     }
 
-    override fun buildOperationBinding(annotation: AsyncApiProducer): Map<String, OperationBinding> {
+    override fun buildOperationBinding(annotation: AsyncApiDocProducer): Map<String, OperationBinding> {
         var groupId = resolver!!.resolveStringValue(annotation.groupId)
         if (groupId == null || groupId.isEmpty()) {
             groupId = null

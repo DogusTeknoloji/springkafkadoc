@@ -7,7 +7,7 @@ import java.lang.annotation.Target
 
 @Target(ElementType.TYPE, ElementType.METHOD, ElementType.ANNOTATION_TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-annotation class AsyncApiProducer(
+annotation class AsyncApiDocProducer(
     val topicPattern: String = "",
     val groupId: String = ""
 )
