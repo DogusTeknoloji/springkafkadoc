@@ -71,7 +71,7 @@ Producer example:
 @Component
 class CustomerCreatedEventProducer {
 
-    @AsyncApiProducer("customerCreated")
+    @AsyncApiDocProducer("customerCreated")
     fun send(@Payload payload: CustomerCreatedEvent) {
         // TODO
     }
