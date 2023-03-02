@@ -45,6 +45,11 @@ class SchemasService(
             return "List"
         }
 
+        if (type == Map::class.java) {
+            definitions["Map"] = ObjectSchema()
+            return "Map"
+        }
+
         if (schemas.size == 1) {
             return schemas.keys.first()
         }
