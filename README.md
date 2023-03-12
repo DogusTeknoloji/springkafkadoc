@@ -83,11 +83,11 @@ The tool detects the consumers and producers in the project by finding the class
 
 Normally, an annotation is not required for the methods or payloads of the producers. 
 But, we use kafka's @Payload annotation for payloads to create the producer document.
-In addition, we use the @AsyncApiProducer annotation created in the tool to understand which topic the events are thrown to.
+In addition, we use the @AsyncApiDocProducer annotation created in the tool to understand which topic the events are thrown to.
 
 We use the topicPattern parameter, which we want to pull the consumer topic names from the config files. 
 There is a rule to get the last word here. 
-There is a topicPattern parameter in the @AsyncApiProducer annotation, but whatever value is given to that parameter, that value is used as it is.
+There is a topicPattern parameter in the @AsyncApiDocProducer annotation, but whatever value is given to that parameter, that value is used as it is.
 
 ## Endpoints
 In this project, there are two endpoints.
